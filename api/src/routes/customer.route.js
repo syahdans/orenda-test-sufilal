@@ -5,14 +5,14 @@ const validator = require('../validations')
 const validate = require('../utils/validate');
 
 // Define routes
-router.get('/', controller.list);
+router.get("/", controller.getAll);
 
 router.get('/:id', controller.get);
 
 router.post("/", validate(validator.customer.create), controller.create);
 
-// router.put('/:id', controller.update);
+router.put('/:id', validate(validator.customer.update), controller.update);
 
-// router.delete('/:id', controller.remove);
+router.delete('/:id', controller.remove);
 
 module.exports = router;

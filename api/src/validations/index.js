@@ -5,5 +5,16 @@ module.exports = {
         create:[
             body('name').notEmpty()
         ],
-    }
+        update:[
+            body('name').notEmpty()
+        ],
+    },
+    product:{
+        create:[
+            body('name').notEmpty()
+        ],
+        update:[
+            body('name').notEmpty()
+        ],
+    },
 }

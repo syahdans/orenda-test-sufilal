@@ -1,13 +1,26 @@
 const httpStatus = require('http-status');
-
 const { Customer } = require("../models");
-const { validationResult } = require('express-validator');
+
+/**
+ * Get user list with pagination
+ * @public
+ */
+exports.list = async (req, res, next) => {
+  try {
+    const response = await Customer.findAll();
+    const result = await res.json(response);
+
+    return res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 /**
  * Get user list
  * @public
  */
-exports.list = async (req, res, next) => {
+exports.getAll = async (req, res, next) => {
   try {
     const response = await Customer.findAll();
     const result = await res.json(response);
@@ -40,56 +53,38 @@ exports.get = async(req, res) => {
  */
 exports.create = async (req, res, next) => {
   try {
-    const customer = await Customer.create(req.body);
+    await Customer.create(req.body);
 
-    res.status(httpStatus.CREATED).json(req.body);
+    res.status(httpStatus.CREATED).json({ success: true });
   } catch (error) {
-      next(User.checkDuplicateEmail(error));
+      next(error);
   }
 };
-
-/**
- * Replace existing user
- * @public
- */
-// exports.replace = async (req, res, next) => {
-//     try {
-//         const { user } = req.locals;
-//         const newUser = new User(req.body);
-//         const ommitRole = user.role !== 'admin' ? 'role' : '';
-//         const newUserObject = omit(newUser.toObject(), '_id', ommitRole);
-
-//         await user.updateOne(newUserObject, { override: true, upsert: true });
-//         const savedUser = await User.findById(user._id);
-
-//         res.json(savedUser.transform());
-//     } catch (error) {
-//         next(User.checkDuplicateEmail(error));
-//     }
-// };
 
 /**
  * Update existing user
  * @public
  */
-// exports.update = (req, res, next) => {
-//     const ommitRole = req.locals.user.role !== 'admin' ? 'role' : '';
-//     const updatedUser = omit(req.body, ommitRole);
-//     const user = Object.assign(req.locals.user, updatedUser);
+exports.update = async (req, res, next) => {
+  try {
+    await Customer.update(req.body, { where: { id: req.params.id } });
 
-//     user.save()
-//         .then((savedUser) => res.json(savedUser.transform()))
-//         .catch((e) => next(User.checkDuplicateEmail(e)));
-// };
+    res.status(httpStatus.OK).json({ success: true });
+  } catch (error) {
+    next(error);
+  }
+};
 
 /**
  * Delete user
  * @public
  */
-// exports.remove = (req, res, next) => {
-//     const { user } = req.locals;
+exports.remove = async (req, res, next) => {
+  try {
+    await Customer.destroy({ where: { id: req.params.id } });
 
-//     user.remove()
-//         .then(() => res.status(httpStatus.NO_CONTENT).end())
-//         .catch((e) => next(e));
-// };
+    res.status(httpStatus.OK).json({ success: true });
+  } catch (error) {
+    next(error);
+  }
+};
