@@ -1,4 +1,4 @@
-const httpStatus = require('http-status');
+const httpStatus = require("http-status");
 const { Customer } = require("../models");
 
 /**
@@ -31,20 +31,19 @@ exports.getAll = async (req, res, next) => {
   }
 };
 
-
 /**
  * Get customer
  * @public
  */
-exports.get = async(req, res) => {
-    try {
-      const response = await Customer.findByPk(req.params.id);
-      const result = await res.json(response);
+exports.get = async (req, res) => {
+  try {
+    const response = await Customer.findByPk(req.params.id);
+    const result = await res.json(response);
 
-      return res.json(result);
-    } catch (error) {
-        console.error(error);
-    }
+    return res.json(result);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -57,7 +56,7 @@ exports.create = async (req, res, next) => {
 
     res.status(httpStatus.CREATED).json({ success: true });
   } catch (error) {
-      next(error);
+    next(error);
   }
 };
 

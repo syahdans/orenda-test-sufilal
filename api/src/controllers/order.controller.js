@@ -50,10 +50,12 @@ exports.create = async (req, res, next) => {
         order_id: null,
         product_id: e.product_id,
         qty: e.qty,
-        amount: e.qty * products
-          .filter((item) => item.id == e.product_id)
-          .map((item) => item.price)
-          .reduce((a, b) => a + b, 0),
+        amount:
+          e.qty *
+          products
+            .filter((item) => item.id == e.product_id)
+            .map((item) => item.price)
+            .reduce((a, b) => a + b, 0),
       };
     });
 
@@ -72,7 +74,7 @@ exports.create = async (req, res, next) => {
     res.status(httpStatus.CREATED).json({ success: true });
   } catch (error) {
     console.log(error);
-    
+
     next(error);
   }
 };
