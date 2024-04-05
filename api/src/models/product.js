@@ -1,12 +1,13 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
+const OrderProduct = require("./order_product");
 
-module.exports = sequelize.define(
+const Product = sequelize.define(
   "Product",
   {
     name: DataTypes.STRING,
     unit: DataTypes.STRING,
-    price: DataTypes.STRING,
+    price: DataTypes.BIGINT,
   },
   {
     sequelize,
@@ -14,3 +15,7 @@ module.exports = sequelize.define(
     underscored: true,
   }
 );
+
+// Product.hasMany(OrderProduct);
+
+module.exports = Product;

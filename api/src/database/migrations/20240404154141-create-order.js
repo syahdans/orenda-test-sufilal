@@ -18,16 +18,16 @@ module.exports = {
         },
       },
       discount: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(5, 2),
       },
       sub_total: {
         type: Sequelize.BIGINT,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },

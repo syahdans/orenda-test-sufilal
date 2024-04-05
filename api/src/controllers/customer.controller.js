@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const { Customer } = require("../models");
 
 /**
- * Get user list with pagination
+ * Get customer list with pagination
  * @public
  */
 exports.list = async (req, res, next) => {
@@ -17,7 +17,7 @@ exports.list = async (req, res, next) => {
 };
 
 /**
- * Get user list
+ * Get customer list
  * @public
  */
 exports.getAll = async (req, res, next) => {
@@ -33,7 +33,7 @@ exports.getAll = async (req, res, next) => {
 
 
 /**
- * Get user
+ * Get customer
  * @public
  */
 exports.get = async(req, res) => {
@@ -48,7 +48,7 @@ exports.get = async(req, res) => {
 };
 
 /**
- * Create new user
+ * Create new customer
  * @public
  */
 exports.create = async (req, res, next) => {
@@ -62,7 +62,7 @@ exports.create = async (req, res, next) => {
 };
 
 /**
- * Update existing user
+ * Update existing customer
  * @public
  */
 exports.update = async (req, res, next) => {
@@ -76,7 +76,7 @@ exports.update = async (req, res, next) => {
 };
 
 /**
- * Delete user
+ * Delete customer
  * @public
  */
 exports.remove = async (req, res, next) => {

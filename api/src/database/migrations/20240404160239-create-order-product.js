@@ -25,11 +25,21 @@ module.exports = {
           key: "id",
         },
       },
-      createdAt: {
+      qty: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+      },
+      amount: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        defaultValue: 0
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
